@@ -123,14 +123,32 @@ public class BufferLimitado {
 	
 	//prueba
 	
-	public synchronized void insertProductAzulEtapaFinal(String message)
+	public synchronized void insertEtapaFinal(String message)
 	{
 		this.buffer.add(message);
 		
-		notifyAll();
+	}
+	
+	public String recogerProductRojo()
+	{
+		String message = "";
+		
+		if (this.buffer.size() == 0)
+		{
+			
+			return message;
+			
+		}
+		
+		message = this.buffer.remove(0);
+	
+		return message;
 		
 	}
 	
+	public int getNmessages() {
+		return Nmessages;
+	}
 	
 
 }

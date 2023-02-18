@@ -57,6 +57,11 @@ public class Main {
 	        ProcesoAzul p8 = new ProcesoAzul(idproductos, null,buf2,buf3, 5,true,3);
 	        
 	        ProcesoNaranja p9 = new ProcesoNaranja(idproductos, null,buf2,buf3, 5,true,3);
+	        
+	        
+	        
+	        
+	        ProcesoRojo p10 = new ProcesoRojo(buf3,3,5);
 	      
 			
 			
@@ -77,7 +82,25 @@ public class Main {
 			p7.start();
 			p8.start();
 			p9.start();
-		
+			
+			try {
+				p7.join();
+				p8.join();
+				p9.join();
+				
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//etapa final
+			
+			for(String mensjae: buf3.getBuffer())
+			{
+				System.out.println(mensjae);
+			}
+			
+			p10.start();
 		
 			
 			

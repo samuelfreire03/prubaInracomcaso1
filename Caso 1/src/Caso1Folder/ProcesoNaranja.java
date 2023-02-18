@@ -51,7 +51,7 @@ public class ProcesoNaranja extends Thread{
 			else {
 				System.out.println(message + ", recibido en etapa 3 por proceso 1");
 				String mensaje = message + ", recibido en etapa 3 por proceso 0";
-				this.buf3.insertProductAzulEtapaFinal(mensaje  + " El producto sale de la etapa 3 a etapa final");
+				this.buf3.insertEtapaFinal(mensaje  + " El producto sale de la etapa 3 a etapa final");
 			}
 	}
 	
