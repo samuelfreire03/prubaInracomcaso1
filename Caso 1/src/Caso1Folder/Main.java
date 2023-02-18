@@ -60,15 +60,19 @@ public class Main {
 	      
 			
 			
-			
+			//etapa 1
 			
 	        p1.start();
 	        p2.start();
 	        p3.start();
 	        
+	     	//etapa 2
+	        
 			p4.start();
 			p5.start();
 			p6.start();
+			
+			//etapa 3
 			
 			p7.start();
 			p8.start();
