@@ -77,9 +77,12 @@ public class ProcesoAzul extends Thread{
 				{
 					int i=0;
 					this.MandarProducto(i, message);
+					cantProductos-=1;
 				}
-				
-				
+				else if (cantProductos<=0)
+				{
+					this.interrupt();
+				}
 			}
 		}
 		
@@ -93,18 +96,16 @@ public class ProcesoAzul extends Thread{
 				{
 					int i=0;
 					this.MandarProducto(i, message);
+					cantProductos-=1;
 				}
-				
+				else if (cantProductos<=0)
+				{
+					this.interrupt();
+				}
 				
 			}
 			
-		}
-		
-
-		
-		
-		
-			
+		}	
 	}
 
 }

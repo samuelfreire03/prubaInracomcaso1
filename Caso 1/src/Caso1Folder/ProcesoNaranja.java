@@ -50,7 +50,7 @@ public class ProcesoNaranja extends Thread{
 			}
 			else {
 				System.out.println(message + ", recibido en etapa 3 por proceso 1");
-				String mensaje = message + ", recibido en etapa 3 por proceso 0";
+				String mensaje = message + ", recibido en etapa 3 por proceso 1";
 				this.buf3.insertEtapaFinal(mensaje  + " El producto sale de la etapa 3 a etapa final");
 			}
 	}
@@ -86,12 +86,15 @@ public class ProcesoNaranja extends Thread{
 				{
 					int i=0;
 					this.MandarProducto(i, message);
+					cantProductos--;
 				}
 				else {
 					this.yield();
 				}
-				
-				
+				if (cantProductos<=0)
+				{
+					this.interrupt();
+				}
 			}
 			
 		}
@@ -107,14 +110,16 @@ public class ProcesoNaranja extends Thread{
 				{
 					int i=0;
 					this.MandarProducto(i, message);
+					cantProductos--;
 				}
 				else {
 					this.yield();
 				}
-				
-				
+				if (cantProductos<=0)
+				{
+					this.interrupt();
+				}
 			}
-			
 		}
 	}
 

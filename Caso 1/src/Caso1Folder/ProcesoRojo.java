@@ -1,5 +1,10 @@
 package Caso1Folder;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ProcesoRojo extends Thread{
 	
 	private BufferLimitado bufFinal;
@@ -17,20 +22,32 @@ public class ProcesoRojo extends Thread{
 	public void run() 
 	{
 		
-		while(!bufFinal.isFinishedBuffer()||this.bufFinal.hasProducts())
-		{	
+		List<String> lista = bufFinal.getBuffer()
+;		
+		if(this.bufFinal.hasProducts())
+		{
 			
-			int count = 0;
-			while((cantproc*cantproductos)> count) 
+			int id = 1;
+			
+			while (id<=cantproc*cantproductos)
 			{
+				int conteo = 0;
 				
-				String message = this.bufFinal.recogerProductRojo();
-				System.out.println("Producto Terminado");
-				count+=1;
+				while(conteo<lista.size())
+				{
+					
+					if(lista.get(conteo).contains("id" + id))
+					{
+						
+						System.out.println(lista.get(conteo));
+						id+=1;
 				
+					}
+					
+					conteo +=1;
+					
+				}
 			}
-			
-			
 		}
 		
 	}

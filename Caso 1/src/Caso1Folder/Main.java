@@ -1,5 +1,9 @@
 package Caso1Folder;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 	
 	private static Numero idproductos;
@@ -31,7 +35,7 @@ public class Main {
 	        
 	        //esto es la creacion del buffer segunda etapa
 	        
-	        BufferLimitado buf3 = new BufferLimitado(100,100,100);
+	        BufferLimitado buf3 = new BufferLimitado(100,3,5);
 	        
 	        //esta es la cantidad 
 	        
@@ -62,8 +66,7 @@ public class Main {
 	        
 	        
 	        ProcesoRojo p10 = new ProcesoRojo(buf3,3,5);
-	      
-			
+	        
 			
 			//etapa 1
 			
@@ -95,15 +98,10 @@ public class Main {
 			
 			//etapa final
 			
-			for(String mensjae: buf3.getBuffer())
-			{
-				System.out.println(mensjae);
-			}
-			
 			p10.start();
-		
 			
-			
+
+
 		
 	}
 

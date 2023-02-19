@@ -114,7 +114,7 @@ public class BufferLimitado {
 	
 	
 	public synchronized boolean isFinishedBuffer() {
-		return this.Nmessages==0;
+		return this.Nmessages<=0;
 	}
 	
 	public List<String> getBuffer() {
@@ -125,7 +125,10 @@ public class BufferLimitado {
 	
 	public synchronized void insertEtapaFinal(String message)
 	{
-		this.buffer.add(message);
+		if (!buffer.contains(message))
+		{
+			this.buffer.add(message);
+		}
 		
 	}
 	
