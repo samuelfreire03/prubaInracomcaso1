@@ -39,7 +39,7 @@ public class ProcesoRojo extends Thread{
 					if(lista.get(conteo).contains("id" + id))
 					{
 						
-						System.out.println(lista.get(conteo));
+						System.out.println(lista.get(conteo) + " Producto Temrinado");
 						id+=1;
 				
 					}

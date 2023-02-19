@@ -91,6 +91,8 @@ public class Main {
 				p8.join();
 				p9.join();
 				
+				System.out.println("----------Empieza etapa final------");
+				
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
