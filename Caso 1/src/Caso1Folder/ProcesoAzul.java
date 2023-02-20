@@ -14,18 +14,15 @@ public class ProcesoAzul extends Thread{
 	
 	private int cantProductos;
 	
-	private boolean tipo;
-	
 	private int etapa;
 	
-	public ProcesoAzul(Numero id,BufferLimitado buf,BufferLimitado buf2,BufferLimitado buf3, int cantidadproductos,boolean tipo,int etapa)
+	public ProcesoAzul(Numero id,BufferLimitado buf,BufferLimitado buf2,BufferLimitado buf3, int cantidadproductos,int etapa)
 	{
 		
 		this.idProductos = id;
 		this.buf = buf;
 		this.buf2 = buf2;
 		this.cantProductos = cantidadproductos;
-		this.tipo = tipo;
 		this.etapa = etapa;
 		this.buf3 = buf3;
 
@@ -101,7 +98,6 @@ public class ProcesoAzul extends Thread{
 				{
 					int i=0;
 					this.MandarProducto(i, message);
-					cantProductos-=1;
 				}
 			}
 		}
@@ -116,7 +112,6 @@ public class ProcesoAzul extends Thread{
 				{
 					int i=0;
 					this.MandarProducto(i, message);
-					cantProductos-=1;
 				}
 				
 			}

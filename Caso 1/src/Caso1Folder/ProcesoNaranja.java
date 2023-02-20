@@ -12,20 +12,17 @@ public class ProcesoNaranja extends Thread{
 	
 	private int cantProductos;
 	
-	private boolean tipo;
-	
 	private BufferLimitado buf3;
 	
 	private int etapa;
 	
-	public ProcesoNaranja(Numero id,BufferLimitado buf1,BufferLimitado buf2,BufferLimitado buf3,int cantidadproductos,boolean tipo,int etapa)
+	public ProcesoNaranja(Numero id,BufferLimitado buf1,BufferLimitado buf2,BufferLimitado buf3,int cantidadproductos,int etapa)
 	{
 		
 		this.idProductos = id;
 		this.buf1 = buf1;
 		this.buf2=buf2;
 		this.cantProductos = cantidadproductos;
-		this.tipo = tipo;
 		this.etapa = etapa;
 		this.buf3 = buf3;
 
@@ -103,7 +100,6 @@ public class ProcesoNaranja extends Thread{
 	
 			while(!buf1.isFinishedBuffer()||this.buf1.hasProducts())
 			{	
-				
 				String message = this.buf1.recogerProductNaranja(this);
 				if (message != "")
 				{
@@ -123,7 +119,6 @@ public class ProcesoNaranja extends Thread{
 	
 			while(!buf2.isFinishedBuffer()||this.buf2.hasProducts())
 			{	
-				
 				String message = this.buf2.recogerProductNaranja(this);
 				if (message != "")
 				{

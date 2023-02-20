@@ -53,14 +53,14 @@ public class Main {
         
         for(int i = 0;i<cantProceso-1;i++)
 	    {
-        	listaprocesosetapa1[i] = new ProcesoAzul(idproductos, buf1,null,null,cantProductos,true,1);
-        	listaprocesosetapa2[i] = new ProcesoAzul(idproductos, buf1,buf2,null,cantProductos,true,2);
-        	listaprocesosetapa3[i] = new ProcesoAzul(idproductos, null,buf2,buf3,cantProductos,true,3);
+        	listaprocesosetapa1[i] = new ProcesoAzul(idproductos, buf1,null,null,cantProductos,1);
+        	listaprocesosetapa2[i] = new ProcesoAzul(idproductos, buf1,buf2,null,cantProductos,2);
+        	listaprocesosetapa3[i] = new ProcesoAzul(idproductos, null,buf2,buf3,cantProductos,3);
 	    }
         
-        ProcesoNaranja pnaranja = new ProcesoNaranja(idproductos, buf1,null,null,cantProductos,true,1);
-        ProcesoNaranja pnaranjaet2 = new ProcesoNaranja(idproductos, buf1,buf2,null, cantProductos,true,2);
-        ProcesoNaranja pnaranjaet3 = new ProcesoNaranja(idproductos, null,buf2,buf3, cantProductos,true,3);
+        ProcesoNaranja pnaranja = new ProcesoNaranja(idproductos, buf1,null,null,cantProductos,1);
+        ProcesoNaranja pnaranjaet2 = new ProcesoNaranja(idproductos, buf1,buf2,null, cantProductos,2);
+        ProcesoNaranja pnaranjaet3 = new ProcesoNaranja(idproductos, null,buf2,buf3, cantProductos,3);
         
         pnaranja.start();
         pnaranjaet2.start();
