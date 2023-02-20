@@ -35,7 +35,7 @@ public class ProcesoNaranja extends Thread{
 		
 		if(etapa==1) {
 			
-			while(!this.buf1.insertProductNaranja("El producto con el id" + id + ", sale del proceso 1 en la etapa 1 a la etapa 2",this)) {
+			while(!this.buf1.insertProductNaranja("El producto con el id" + id + ", sale de la etapa 1 del proceso 1 Progreso producto: 25% [#####---------------] Listo Etapa 1",this)) {
 				this.yield();
 			}
 			}
@@ -91,10 +91,6 @@ public class ProcesoNaranja extends Thread{
 				else {
 					this.yield();
 				}
-				if (cantProductos<=0)
-				{
-					this.interrupt();
-				}
 			}
 			
 		}
@@ -114,10 +110,6 @@ public class ProcesoNaranja extends Thread{
 				}
 				else {
 					this.yield();
-				}
-				if (cantProductos<=0)
-				{
-					this.interrupt();
 				}
 			}
 		}

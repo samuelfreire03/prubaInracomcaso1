@@ -35,17 +35,15 @@ public class ProcesoAzul extends Thread{
 	private void MandarProducto(int id,String message)
 	{
 		if(etapa==1) {
-		this.buf.insertProductAzul("El producto con el id" + id + ", sale del proceso 0 en la etapa 1 a la etapa 2");
+		this.buf.insertProductAzul("El producto con el id" + id + ", sale del proceso 0 de la etapa 1 Progreso producto: 25% [#####---------------] Listo Etapa 1");
 		}
 		else if(etapa==2)  {
 		System.out.println(message + ", recibido en etapa 2 por proceso 0");
-		String mensaje = message + ", recibido en etapa 2 por proceso 0";
-		this.buf2.insertProductAzul(mensaje  + " El producto sale de la etapa 2 a etapa 3");
+		this.buf2.insertProductAzul(message  + " Progreso producto: 50% [##########----------] Listo Etapa 2");
 		}
 		else {
 			System.out.println(message + ", recibido en etapa 3 por proceso 0");
-			String mensaje = message + ", recibido en etapa 3 por proceso 0";
-			this.buf3.insertEtapaFinal(mensaje  + " El producto sale de la etapa 3 a etapa final");
+			this.buf3.insertEtapaFinal(message  + " Progreso producto: 75% [###############-----] Listo Etapa 3");
 		}
 	}
 	
@@ -79,10 +77,6 @@ public class ProcesoAzul extends Thread{
 					this.MandarProducto(i, message);
 					cantProductos-=1;
 				}
-				else if (cantProductos<=0)
-				{
-					this.interrupt();
-				}
 			}
 		}
 		
@@ -97,10 +91,6 @@ public class ProcesoAzul extends Thread{
 					int i=0;
 					this.MandarProducto(i, message);
 					cantProductos-=1;
-				}
-				else if (cantProductos<=0)
-				{
-					this.interrupt();
 				}
 				
 			}

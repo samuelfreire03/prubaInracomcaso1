@@ -3,6 +3,7 @@ package Caso1Folder;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 	
@@ -18,93 +19,95 @@ public class Main {
 	
 	public static void main(String[] args) 
 	{
+		
+		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+	    System.out.println("Capacidad buffer: ");
+
+	    int capacidadBuffer = Integer.valueOf(myObj.nextLine());
+	    
+	    System.out.println("Cantidad productos: ");
+	    
+	    int cantProductos = Integer.valueOf(myObj.nextLine());
+	    
+	    System.out.println("Cantidad procesos: ");
+	    
+	    int cantProceso = Integer.valueOf(myObj.nextLine());
+	    
+	    System.out.println(cantProductos);
+	    System.out.println(cantProceso);
+	    System.out.println(capacidadBuffer);
+    
+	    //Todo el siguiente codigo emula la creacion de los hilos de los procesos azules
+	    
+	    //esta es la creacion del numero
         
-		//Todo el siguiente codigo emula la creacion de los hilos de los procesos azules
-		
-	        //esto es la creacion del buffer primera etapa
-	        
-			BufferLimitado buf1 = new BufferLimitado(5,3,5);
-	        
-	        //esta es la creacion del numero
-	        
-	        idproductos = new Numero(0);
-	        
-	        //esto es la creacion del buffer primera etapa
-	        
-	        BufferLimitado buf2 = new BufferLimitado(5,3,5);
-	        
-	        //esto es la creacion del buffer segunda etapa
-	        
-	        BufferLimitado buf3 = new BufferLimitado(100,3,5);
-	        
-	        //esta es la cantidad 
-	        
-	        ProcesoAzul p1 = new ProcesoAzul(idproductos, buf1,null,null, 5,true,1);
-	        
-	        ProcesoAzul p2 = new ProcesoAzul(idproductos, buf1,null,null, 5,true,1);
-	        
-	        ProcesoNaranja p3 = new ProcesoNaranja(idproductos, buf1,null,null, 5,true,1);
-	        
-	        
-	        
-	        ProcesoAzul p4 = new ProcesoAzul(idproductos, buf1,buf2,null, 5,true,2);
-	        
-	        ProcesoAzul p5 = new ProcesoAzul(idproductos, buf1,buf2,null, 5,true,2);
-	        
-	        ProcesoNaranja p6 = new ProcesoNaranja(idproductos, buf1,buf2,null, 5,true,2);
-	        
-	        
-	        
-	        
-	        ProcesoAzul p7 = new ProcesoAzul(idproductos, null,buf2,buf3, 5,true,3);
-	        
-	        ProcesoAzul p8 = new ProcesoAzul(idproductos, null,buf2,buf3, 5,true,3);
-	        
-	        ProcesoNaranja p9 = new ProcesoNaranja(idproductos, null,buf2,buf3, 5,true,3);
-	        
-	        
-	        
-	        
-	        ProcesoRojo p10 = new ProcesoRojo(buf3,3,5);
-	        
-			
-			//etapa 1
-			
-	        p1.start();
-	        p2.start();
-	        p3.start();
-	        
-	     	//etapa 2
-	        
-			p4.start();
-			p5.start();
-			p6.start();
-			
-			//etapa 3
-			
-			p7.start();
-			p8.start();
-			p9.start();
-			
-			try {
-				p7.join();
-				p8.join();
-				p9.join();
-				
-				System.out.println("----------Empieza etapa final------");
-				
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			//etapa final
-			
-			p10.start();
-			
+        idproductos = new Numero(0);
+	
+        //esto es la creacion del buffer primera etapa
+        
+		BufferLimitado buf1 = new BufferLimitado(capacidadBuffer,cantProceso,cantProductos);
+        
+        //esto es la creacion del buffer primera etapa
+        
+        BufferLimitado buf2 = new BufferLimitado(capacidadBuffer,cantProceso,cantProductos);
+        
+        //esto es la creacion del buffer segunda etapa
+        
+        BufferLimitado buf3 = new BufferLimitado(cantProceso*cantProductos+1,cantProceso,cantProductos);
+        
+        //Etapa 1
+        
+        ProcesoAzul [] listaprocesosetapa1 = new ProcesoAzul[cantProceso-1];
+        ProcesoAzul [] listaprocesosetapa2 = new ProcesoAzul[cantProceso-1];
+        ProcesoAzul [] listaprocesosetapa3 = new ProcesoAzul[cantProceso-1];
+	    
+        
+        for(int i = 0;i<cantProceso-1;i++)
+	    {
+        	listaprocesosetapa1[i] = new ProcesoAzul(idproductos, buf1,null,null,cantProductos,true,1);
+        	listaprocesosetapa2[i] = new ProcesoAzul(idproductos, buf1,buf2,null,cantProductos,true,2);
+        	listaprocesosetapa3[i] = new ProcesoAzul(idproductos, null,buf2,buf3,cantProductos,true,3);
+	    }
+        
+        ProcesoNaranja pnaranja = new ProcesoNaranja(idproductos, buf1,null,null,cantProductos,true,1);
+        ProcesoNaranja pnaranjaet2 = new ProcesoNaranja(idproductos, buf1,buf2,null, cantProductos,true,2);
+        ProcesoNaranja pnaranjaet3 = new ProcesoNaranja(idproductos, null,buf2,buf3, cantProductos,true,3);
+        
+        pnaranja.start();
+        pnaranjaet2.start();
+        pnaranjaet3.start();
+        
+        for(int i = 0;i<cantProceso-1;i++)
+	    {
+        	listaprocesosetapa1[i].start();
+        	listaprocesosetapa2[i].start();
+        	listaprocesosetapa3[i].start();
+	    }
+        
+        for(int i = 0;i<cantProceso-1;i++)
+	    {
+        	try {
+    			listaprocesosetapa3[i].join();
+    		} catch (InterruptedException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+	    }
 
+        try {
+			pnaranjaet3.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+        ProcesoRojo p10 = new ProcesoRojo(buf3,cantProceso,cantProductos);
+        
+        System.out.println("----------------------Etapa Final--------------------");
 		
+		p10.start();
+
+	
 	}
 
 }
