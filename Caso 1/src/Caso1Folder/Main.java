@@ -1,21 +1,10 @@
 package Caso1Folder;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 	
 	private static Numero idproductos;
-	
-	private  BufferLimitado buf1;
-	
-	private  BufferLimitado buf2;
-	
-	private  BufferLimitado buf3;
-	
-	private static int cantidad;
 	
 	public static void main(String[] args) 
 	{
@@ -32,16 +21,16 @@ public class Main {
 	    System.out.println("Cantidad procesos: ");
 	    
 	    int cantProceso = Integer.valueOf(myObj.nextLine());
+
+		System.out.println("Indice con el  cual desea iniciar la identificacion de productos: ");
 	    
-	    System.out.println(cantProductos);
-	    System.out.println(cantProceso);
-	    System.out.println(capacidadBuffer);
+	    int idproductosid = Integer.valueOf(myObj.nextLine());
     
 	    //Todo el siguiente codigo emula la creacion de los hilos de los procesos azules
 	    
 	    //esta es la creacion del numero
         
-        idproductos = new Numero(0);
+        idproductos = new Numero(idproductosid);
 	
         //esto es la creacion del buffer primera etapa
         

@@ -1,5 +1,7 @@
 package Caso1Folder;
 
+import java.util.Random;
+
 public class ProcesoAzul extends Thread{
 	
 	private Numero idProductos;
@@ -34,16 +36,40 @@ public class ProcesoAzul extends Thread{
 	
 	private void MandarProducto(int id,String message)
 	{
-		if(etapa==1) {
-		this.buf.insertProductAzul("El producto con el id" + id + ", sale del proceso 0 de la etapa 1 Progreso producto: 25% [#####---------------] Listo Etapa 1");
+		if(etapa==1) 
+		{
+
+			this.buf.insertProductAzul("El producto con el id" + id + ", sale del proceso 0. Progreso producto: 25% [#####---------------] Producto Creado");
 		}
-		else if(etapa==2)  {
-		System.out.println(message + ", recibido en etapa 2 por proceso 0");
-		this.buf2.insertProductAzul(message  + " Progreso producto: 50% [##########----------] Listo Etapa 2");
+		else if(etapa==2)  
+		{
+			Random random = new Random();
+        	int randomNumber = random.nextInt(451) + 50;
+
+			try {
+				this.sleep(randomNumber);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			System.out.println(message + ", recibido etapa 2 por proceso 0");
+			this.buf2.insertProductAzul(message.substring(0,43) + " Progreso producto: 50% [##########----------] Producto creado,Listo Etapa 2 TiempoTranformacion: " + randomNumber + " ms");
 		}
-		else {
-			System.out.println(message + ", recibido en etapa 3 por proceso 0");
-			this.buf3.insertEtapaFinal(message  + " Progreso producto: 75% [###############-----] Listo Etapa 3");
+		else 
+		{
+			Random random = new Random();
+        	int randomNumber = random.nextInt(451) + 50;
+
+			try {
+				this.sleep(randomNumber);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			System.out.println(message + ", recibido etapa 3 por proceso 0");
+			this.buf3.insertEtapaFinal(message.substring(0,43) + " Progreso producto: 75% [###############-----] Producto creado,Listo Etapa 2,Listo Etapa 3 TiempoTranformacion: " + randomNumber + " ms");
 		}
 	}
 	

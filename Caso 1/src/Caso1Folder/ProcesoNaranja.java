@@ -1,5 +1,7 @@
 package Caso1Folder;
 
+import java.util.Random;
+
 public class ProcesoNaranja extends Thread{
 	
 	private Numero idProductos;
@@ -33,26 +35,47 @@ public class ProcesoNaranja extends Thread{
 	private void MandarProducto(int id,String message)
 	{
 		
-		if(etapa==1) {
+		if(etapa==1) 
+		{
 			
-			while(!this.buf1.insertProductNaranja("El producto con el id" + id + ", sale de la etapa 1 del proceso 1 Progreso producto: 25% [#####---------------] Listo Etapa 1",this)) {
+			while(!this.buf1.insertProductNaranja("El producto con el id" + id + ", sale del proceso 1. Progreso producto: 25% [#####---------------] Producto Creado ",this)) 
+			{
 				this.yield();
 			}
+		}
+		else if(etapa==2)  
+		{
+			Random random = new Random();
+        	int randomNumber = random.nextInt(451) + 50;
+
+			try {
+				this.sleep(randomNumber);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			else if(etapa==2)  {
-				
-				System.out.println(message + ", recibido en etapa 2 por proceso 1");
-				String mensaje = message + ", recibido en etapa 2 por proceso 1";
-			while(!this.buf2.insertProductNaranja(mensaje  + " El producto sale de la etapa 2 a etapa 3",this)) {
+			
+			System.out.println(message + ", recibido en etapa 2 por proceso 1");
+			while(!this.buf2.insertProductNaranja(message.substring(0,43) + " Progreso producto: 50% [##########----------] Producto creado,Listo Etapa 2 TiempoTranformacion: " + randomNumber + " ms",this)) 
+			{
 				this.yield();
 			}
-				this.buf2.insertProductAzul(mensaje  + " El producto sale de la etapa 2 a etapa 3");
+		}
+		else 
+		{
+			Random random = new Random();
+        	int randomNumber = random.nextInt(451) + 50;
+
+			try {
+				this.sleep(randomNumber);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			else {
-				System.out.println(message + ", recibido en etapa 3 por proceso 1");
-				String mensaje = message + ", recibido en etapa 3 por proceso 1";
-				this.buf3.insertEtapaFinal(mensaje  + " El producto sale de la etapa 3 a etapa final");
-			}
+
+			System.out.println(message + ", recibido en etapa 3 por proceso 1");
+			this.buf3.insertEtapaFinal(message.substring(0,43) + " Progreso producto: 75% [###############-----] Producto creado,Listo Etapa 2,Listo Etapa 3 TiempoTranformacion: " + randomNumber + " ms");
+		}
 	}
 	
 	
