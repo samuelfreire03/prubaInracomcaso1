@@ -53,7 +53,7 @@ public class ProcesoAzul extends Thread{
 				e.printStackTrace();
 			}
 
-			System.out.println(message + ", recibido etapa 2 por proceso 0");
+			System.out.println(message + ", recibido etapa 2 por proceso 0 \n");
 			this.buf2.insertProductAzul(message.substring(0,43) + " Progreso producto: 50% [##########----------] Producto creado,Listo Etapa 2 TiempoTranformacion: " + randomNumber + " ms");
 		}
 		else 
@@ -68,7 +68,7 @@ public class ProcesoAzul extends Thread{
 				e.printStackTrace();
 			}
 
-			System.out.println(message + ", recibido etapa 3 por proceso 0");
+			System.out.println(message + ", recibido etapa 3 por proceso 0 \n");
 			this.buf3.insertEtapaFinal(message.substring(0,43) + " Progreso producto: 75% [###############-----] Producto creado,Listo Etapa 2,Listo Etapa 3 TiempoTranformacion: " + randomNumber + " ms");
 		}
 	}
