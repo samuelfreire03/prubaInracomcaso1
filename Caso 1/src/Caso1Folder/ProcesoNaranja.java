@@ -105,7 +105,6 @@ public class ProcesoNaranja extends Thread{
 				{
 					int i=0;
 					this.MandarProducto(i, message);
-					cantProductos--;
 				}
 				else {
 					this.yield();
@@ -124,7 +123,6 @@ public class ProcesoNaranja extends Thread{
 				{
 					int i=0;
 					this.MandarProducto(i, message);
-					cantProductos--;
 				}
 				else {
 					this.yield();

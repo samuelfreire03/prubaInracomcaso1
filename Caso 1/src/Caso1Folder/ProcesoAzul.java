@@ -80,7 +80,7 @@ public class ProcesoAzul extends Thread{
 			for(int i = 0; i < this.cantProductos;i++)
 			{
 				idProductos.MasNumero();
-				String message = null;
+				String message = "";
 				this.MandarProducto(idProductos.getNumero(),message);
 			}
 			
@@ -92,7 +92,6 @@ public class ProcesoAzul extends Thread{
 		{
 			while(!buf.isFinishedBuffer()||this.buf.hasProducts())
 			{	
-				
 				String message = this.buf.recogerProductAzul();
 				if (message != "")
 				{

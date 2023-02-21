@@ -63,7 +63,7 @@ public class Main {
         ProcesoNaranja pnaranjaet3 = new ProcesoNaranja(idproductos, null,buf2,buf3, cantProductos,3);
         
         pnaranja.start();
-        pnaranjaet2.start();
+		pnaranjaet2.start();
         pnaranjaet3.start();
         
         for(int i = 0;i<cantProceso-1;i++)

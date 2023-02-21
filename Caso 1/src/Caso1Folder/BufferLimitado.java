@@ -41,8 +41,12 @@ public class BufferLimitado {
 			}
 			
 		}
-		this.Nmessages--;
-		this.buffer.add(message);
+
+		if (!buffer.contains(message))
+		{
+			this.buffer.add(message);
+			this.Nmessages--;
+		}
 		
 		notifyAll();
 		
@@ -52,9 +56,10 @@ public class BufferLimitado {
 	{
 		String message = "";
 		
-		while (this.buffer.size() == 0|| buffer.get(0).contains("proceso 0")==false)
+		while (this.buffer.size() == 0)
 		{
 			try {
+				System.out.println("espera");
 				wait();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -63,7 +68,10 @@ public class BufferLimitado {
 			
 		}
 		
-		message = this.buffer.remove(0);
+		if(buffer.get(0).contains("proceso 0"))
+		{
+			message = this.buffer.remove(0);
+		}
 		
 		notifyAll();
 					
@@ -83,9 +91,11 @@ public class BufferLimitado {
 			return false;
 		}
 		
-		this.Nmessages--;
-		
-		this.buffer.add(message);
+		if (!buffer.contains(message))
+		{
+			this.buffer.add(message);
+			this.Nmessages--;
+		}
 		
 		notifyAll();
 		
@@ -97,15 +107,18 @@ public class BufferLimitado {
 	{
 		String message = "";
 		
-		if (this.buffer.size() == 0||buffer.get(0).contains("proceso 1")==false)
+		if (this.buffer.size() == 0)
 		{
 			
 			return message;
 			
 		}
 		
-		message = this.buffer.remove(0);
-		
+		if(buffer.get(0).contains("proceso 1"))
+		{
+			message = this.buffer.remove(0);
+		}
+
 		notifyAll();
 	
 		return message;
@@ -151,6 +164,16 @@ public class BufferLimitado {
 	
 	public int getNmessages() {
 		return Nmessages;
+	}
+
+	public void imprimirbuffer()
+	{
+		System.out.println("empieza");
+		for(String message: buffer)
+		{
+			System.out.println(message);
+		}
+		System.out.println("acaba");
 	}
 	
 
