@@ -14,6 +14,10 @@ public class ProcesoNaranja extends Thread{
 	
 	private BufferLimitado buf3;
 	
+	private int mensajesprocesadoset2;
+	
+	private int mensajesprocesadoset3;
+	
 	private int etapa;
 	
 	public ProcesoNaranja(Numero id,BufferLimitado buf1,BufferLimitado buf2,BufferLimitado buf3,int cantidadproductos,int etapa)
@@ -23,6 +27,8 @@ public class ProcesoNaranja extends Thread{
 		this.buf1 = buf1;
 		this.buf2=buf2;
 		this.cantProductos = cantidadproductos;
+		this.mensajesprocesadoset2 = cantidadproductos;
+		this.mensajesprocesadoset3 = cantidadproductos;
 		this.etapa = etapa;
 		this.buf3 = buf3;
 
@@ -98,13 +104,14 @@ public class ProcesoNaranja extends Thread{
 		else if(etapa==2)
 		{
 	
-			while(!buf1.isFinishedBuffer()||this.buf1.hasProducts())
+			while(mensajesprocesadoset2>0||this.buf1.hasProducts())
 			{	
 				String message = this.buf1.recogerProductNaranja(this);
 				if (message != "")
 				{
 					int i=0;
 					this.MandarProducto(i, message);
+					mensajesprocesadoset2--;
 				}
 				else {
 					this.yield();
@@ -116,13 +123,14 @@ public class ProcesoNaranja extends Thread{
 		else
 		{
 	
-			while(!buf2.isFinishedBuffer()||this.buf2.hasProducts())
+			while(mensajesprocesadoset3>0||this.buf2.hasProducts())
 			{	
 				String message = this.buf2.recogerProductNaranja(this);
 				if (message != "")
 				{
 					int i=0;
 					this.MandarProducto(i, message);
+					mensajesprocesadoset3--;
 				}
 				else {
 					this.yield();

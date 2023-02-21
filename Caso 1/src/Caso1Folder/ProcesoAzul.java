@@ -14,6 +14,10 @@ public class ProcesoAzul extends Thread{
 	
 	private int cantProductos;
 	
+	private int mensajesprocesadoset2;
+	
+	private int mensajesprocesadoset3;
+	
 	private int etapa;
 	
 	public ProcesoAzul(Numero id,BufferLimitado buf,BufferLimitado buf2,BufferLimitado buf3, int cantidadproductos,int etapa)
@@ -23,6 +27,8 @@ public class ProcesoAzul extends Thread{
 		this.buf = buf;
 		this.buf2 = buf2;
 		this.cantProductos = cantidadproductos;
+		this.mensajesprocesadoset2 = cantidadproductos;
+		this.mensajesprocesadoset3 = cantidadproductos;
 		this.etapa = etapa;
 		this.buf3 = buf3;
 
@@ -90,20 +96,21 @@ public class ProcesoAzul extends Thread{
 		
 		else if(etapa==2)
 		{
-			while(!buf.isFinishedBuffer()||this.buf.hasProducts())
+			while(mensajesprocesadoset2>0||this.buf.hasProducts())
 			{	
 				String message = this.buf.recogerProductAzul();
 				if (message != "")
 				{
 					int i=0;
 					this.MandarProducto(i, message);
+					mensajesprocesadoset2--;
 				}
 			}
 		}
 		
 		else
 		{
-			while(!buf2.isFinishedBuffer()||this.buf2.hasProducts())
+			while(mensajesprocesadoset3>0||this.buf2.hasProducts())
 			{	
 				
 				String message = this.buf2.recogerProductAzul();
@@ -111,6 +118,7 @@ public class ProcesoAzul extends Thread{
 				{
 					int i=0;
 					this.MandarProducto(i, message);
+					mensajesprocesadoset3--;
 				}
 				
 			}

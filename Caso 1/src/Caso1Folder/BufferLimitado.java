@@ -59,7 +59,6 @@ public class BufferLimitado {
 		while (this.buffer.size() == 0)
 		{
 			try {
-				System.out.println("espera");
 				wait();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
