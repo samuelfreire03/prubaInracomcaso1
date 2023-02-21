@@ -64,12 +64,17 @@ public class Main {
         
         pnaranja.start();
 		pnaranjaet2.start();
-        pnaranjaet3.start();
         
         for(int i = 0;i<cantProceso-1;i++)
 	    {
         	listaprocesosetapa1[i].start();
         	listaprocesosetapa2[i].start();
+	    }
+
+		pnaranjaet3.start();
+
+		for(int i = 0;i<cantProceso-1;i++)
+	    {
         	listaprocesosetapa3[i].start();
 	    }
         
