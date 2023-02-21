@@ -24,31 +24,14 @@ public class ProcesoRojo extends Thread{
 		
 		List<String> lista = bufFinal.getBuffer();
 
-		System.out.println(lista.size());
-			
-			int id = 1;
-
 			System.out.println("----------------------Etapa Final--------------------");
 			
-			while (id<=cantproc*cantproductos)
-			{
-				int conteo = 0;
-				
-				while(conteo<lista.size())
-				{
-					
-					if(lista.get(conteo).contains("id" + id + ","))
-					{
-						int indexfinal = lista.get(conteo).indexOf(";");
+			Collections.sort(lista, new NumComparator());
 
-						System.out.println(lista.get(conteo).substring(0,indexfinal) + "; Progreso producto: 100% [####################] Producto creado,Listo Etapa 2,Listo Etapa 3,Producto Terminado \n");
-						id+=1;
-				
-					}
-					
-					conteo +=1;
-					
-				}
+			for(String mensaje: lista)
+			{
+				int indexfinal = mensaje.indexOf(";");
+				System.out.println(mensaje.substring(0,indexfinal) + "; Progreso producto: 100% [####################] Producto creado,Listo Etapa 2,Listo Etapa 3,Producto Terminado \n");
 			}
 	}
 }
