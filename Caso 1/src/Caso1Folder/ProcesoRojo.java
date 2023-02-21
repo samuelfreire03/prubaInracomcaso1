@@ -22,7 +22,9 @@ public class ProcesoRojo extends Thread{
 	public void run() 
 	{
 		
-		List<String> lista = bufFinal.getBuffer()
+		List<String> lista = bufFinal.getBuffer();
+
+		System.out.println(lista.size());
 ;		
 		if(this.bufFinal.hasProducts())
 		{

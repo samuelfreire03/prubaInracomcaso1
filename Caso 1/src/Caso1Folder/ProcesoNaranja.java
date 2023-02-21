@@ -77,7 +77,9 @@ public class ProcesoNaranja extends Thread{
 			}
 
 			System.out.println(message + ", recibido en etapa 3 por proceso 1 \n");
+			System.out.println(message + "dnwudhwaduhawiudhiwudh");
 			this.buf3.insertEtapaFinal(message.substring(0,43) + " Progreso producto: 75% [###############-----] Producto creado,Listo Etapa 2,Listo Etapa 3 TiempoTranformacion: " + randomNumber + " ms");
+
 		}
 	}
 	

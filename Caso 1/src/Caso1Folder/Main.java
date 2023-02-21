@@ -77,12 +77,18 @@ public class Main {
 	    {
         	try {
     			listaprocesosetapa3[i].join();
-				pnaranjaet3.join();
     		} catch (InterruptedException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
 	    }
+
+		try {
+			pnaranjaet3.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         ProcesoRojo p10 = new ProcesoRojo(buf3,cantProceso,cantProductos);
         

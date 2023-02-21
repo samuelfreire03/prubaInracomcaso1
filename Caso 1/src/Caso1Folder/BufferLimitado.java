@@ -135,13 +135,9 @@ public class BufferLimitado {
 	
 	//prueba
 	
-	public synchronized void insertEtapaFinal(String message)
+	public  void insertEtapaFinal(String message)
 	{
-		if (!buffer.contains(message))
-		{
 			this.buffer.add(message);
-		}
-		
 	}
 	
 	public String recogerProductRojo()
