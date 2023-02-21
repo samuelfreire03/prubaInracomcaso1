@@ -24,6 +24,16 @@ public class ProcesoRojo extends Thread{
 		
 		List<String> lista = bufFinal.getBuffer();
 
+		while(lista.size()!=cantproductos*cantproc)
+		{
+			try {
+				this.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 			System.out.println("----------------------Etapa Final--------------------");
 			
 			Collections.sort(lista, new NumComparator());
