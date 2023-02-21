@@ -96,8 +96,6 @@ public class Main {
 		}
 
         ProcesoRojo p10 = new ProcesoRojo(buf3,cantProceso,cantProductos);
-        
-        System.out.println("----------------------Etapa Final--------------------");
 		
 		p10.start();
 

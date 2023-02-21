@@ -25,11 +25,10 @@ public class ProcesoRojo extends Thread{
 		List<String> lista = bufFinal.getBuffer();
 
 		System.out.println(lista.size());
-;		
-		if(this.bufFinal.hasProducts())
-		{
 			
 			int id = 1;
+
+			System.out.println("----------------------Etapa Final--------------------");
 			
 			while (id<=cantproc*cantproductos)
 			{
@@ -40,8 +39,9 @@ public class ProcesoRojo extends Thread{
 					
 					if(lista.get(conteo).contains("id" + id + ","))
 					{
-						
-						System.out.println(lista.get(conteo).substring(0,43) + " Progreso producto: 100% [####################] Producto creado,Listo Etapa 2,Listo Etapa 3,Producto Terminado \n");
+						int indexfinal = lista.get(conteo).indexOf(";");
+
+						System.out.println(lista.get(conteo).substring(0,indexfinal) + "; Progreso producto: 100% [####################] Producto creado,Listo Etapa 2,Listo Etapa 3,Producto Terminado \n");
 						id+=1;
 				
 					}
@@ -50,7 +50,5 @@ public class ProcesoRojo extends Thread{
 					
 				}
 			}
-		}
-		
 	}
 }

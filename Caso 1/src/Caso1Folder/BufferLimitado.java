@@ -138,6 +138,7 @@ public class BufferLimitado {
 	public  void insertEtapaFinal(String message)
 	{
 			this.buffer.add(message);
+			System.out.println(message + " Recibido Etapa Final");
 	}
 	
 	public String recogerProductRojo()
