@@ -41,7 +41,7 @@ public class ProcesoNaranja extends Thread{
 		if(etapa==1) 
 		{
 			
-			while(!this.buf1.insertProductNaranja("El producto con el id" + id + ", sale del proceso 1. Progreso producto: 25% [#####---------------] Producto Creado ",this)) 
+			while(!this.buf1.insertProductNaranja("El producto con el id" + id + ", sale del proceso 1; Progreso producto: 25% [#####---------------] Producto Creado ",this)) 
 			{
 				this.yield();
 			}
@@ -59,7 +59,8 @@ public class ProcesoNaranja extends Thread{
 			}
 			
 			System.out.println(message + ", recibido en etapa 2 por proceso 1 \n");
-			while(!this.buf2.insertProductNaranja(message.substring(0,43) + " Progreso producto: 50% [##########----------] Producto creado,Listo Etapa 2 TiempoTranformacion: " + randomNumber + " ms",this)) 
+			int indexfinal = message.indexOf(";");
+			while(!this.buf2.insertProductNaranja(message.substring(0,indexfinal) + "; Progreso producto: 50% [##########----------] Producto creado,Listo Etapa 2 TiempoTranformacion: " + randomNumber + " ms",this)) 
 			{
 				this.yield();
 			}
@@ -77,8 +78,8 @@ public class ProcesoNaranja extends Thread{
 			}
 
 			System.out.println(message + ", recibido en etapa 3 por proceso 1 \n");
-			System.out.println(message + "dnwudhwaduhawiudhiwudh");
-			this.buf3.insertEtapaFinal(message.substring(0,43) + " Progreso producto: 75% [###############-----] Producto creado,Listo Etapa 2,Listo Etapa 3 TiempoTranformacion: " + randomNumber + " ms");
+			int indexfinal = message.indexOf(";");
+			this.buf3.insertEtapaFinal(message.substring(0,indexfinal) + "; Progreso producto: 75% [###############-----] Producto creado,Listo Etapa 2,Listo Etapa 3 TiempoTranformacion: " + randomNumber + " ms");
 
 		}
 	}
