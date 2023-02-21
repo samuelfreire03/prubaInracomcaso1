@@ -96,29 +96,29 @@ public class ProcesoAzul extends Thread{
 		
 		else if(etapa==2)
 		{
-			while(mensajesprocesadoset2>0||this.buf.hasProducts())
+			while(mensajesprocesadoset2>0)
 			{	
 				String message = this.buf.recogerProductAzul();
 				if (message != "")
 				{
 					int i=0;
-					this.MandarProducto(i, message);
 					mensajesprocesadoset2--;
+					this.MandarProducto(i, message);
 				}
 			}
 		}
 		
 		else
 		{
-			while(mensajesprocesadoset3>0||this.buf2.hasProducts())
+			while(mensajesprocesadoset3>0)
 			{	
 				
 				String message = this.buf2.recogerProductAzul();
 				if (message != "")
 				{
 					int i=0;
-					this.MandarProducto(i, message);
 					mensajesprocesadoset3--;
+					this.MandarProducto(i, message);
 				}
 				
 			}

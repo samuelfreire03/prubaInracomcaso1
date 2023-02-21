@@ -104,7 +104,7 @@ public class ProcesoNaranja extends Thread{
 		else if(etapa==2)
 		{
 	
-			while(mensajesprocesadoset2>0||this.buf1.hasProducts())
+			while(mensajesprocesadoset2>0)
 			{	
 				String message = this.buf1.recogerProductNaranja(this);
 				if (message != "")
@@ -123,7 +123,7 @@ public class ProcesoNaranja extends Thread{
 		else
 		{
 	
-			while(mensajesprocesadoset3>0||this.buf2.hasProducts())
+			while(mensajesprocesadoset3>0)
 			{	
 				String message = this.buf2.recogerProductNaranja(this);
 				if (message != "")

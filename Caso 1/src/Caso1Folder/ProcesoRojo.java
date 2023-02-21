@@ -36,7 +36,7 @@ public class ProcesoRojo extends Thread{
 				while(conteo<lista.size())
 				{
 					
-					if(lista.get(conteo).contains("id" + id))
+					if(lista.get(conteo).contains("id" + id + ","))
 					{
 						
 						System.out.println(lista.get(conteo).substring(0,43) + " Progreso producto: 100% [####################] Producto creado,Listo Etapa 2,Listo Etapa 3,Producto Terminado \n");
