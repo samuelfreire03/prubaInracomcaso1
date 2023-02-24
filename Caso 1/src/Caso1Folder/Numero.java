@@ -2,6 +2,8 @@ package Caso1Folder;
 
 public class Numero {
 	
+	//Inicializa la creacion del numero
+
 	public int numero;
 	
 	public Numero(int i) {

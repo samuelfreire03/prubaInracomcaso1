@@ -26,6 +26,8 @@ public class ProcesoRojo extends Thread{
 
 		while(lista.size()!=cantproductos*cantproc)
 		{
+			//simula espera activa
+
 			try {
 				this.sleep(1000);
 			} catch (InterruptedException e) {
@@ -35,11 +37,16 @@ public class ProcesoRojo extends Thread{
 		}
 
 			System.out.println("----------------------Etapa Final--------------------");
+
+			//organiza buffer
 			
 			Collections.sort(lista, new NumComparator());
 
 			for(String mensaje: lista)
 			{
+
+				//imprime productos finalizados y ordenados
+
 				int indexfinal = mensaje.indexOf(";");
 				System.out.println(mensaje.substring(0,indexfinal) + "; Progreso producto: 100% [####################] Producto creado,Listo Etapa 2,Listo Etapa 3,Producto Terminado \n");
 			}

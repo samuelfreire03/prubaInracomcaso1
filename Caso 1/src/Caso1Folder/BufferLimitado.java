@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BufferLimitado {
+
+	//Inicalizacion de atributos de buffer(lista, su tamaño y el numero de mensajes qeu debe procesar)
 	
 	private List<String> buffer;
 	
@@ -19,17 +21,20 @@ public class BufferLimitado {
 		this.Nmessages=numThreads*numMessages;
 	}
 	
+	//Verificacion de existencia de productos
+
 	public synchronized boolean hasProducts()
 	{
 		return this.buffer.size() > 0;
 	}
 	
 	
-	//Estos tres metodos siguientes definene el comprtamiento de un thrread o proceso de tipo azul
+	//Insercion y espera pasiva del proceso azul
 	
 	public synchronized void insertProductAzul(String message)
 	{
-		
+		//SI no puede meter productos espera
+
 		while (this.buffer.size() == this.size)
 		{
 			
@@ -47,14 +52,20 @@ public class BufferLimitado {
 			this.buffer.add(message);
 			this.Nmessages--;
 		}
+
+		//Notifica cuadno termine
 		
 		notifyAll();
 		
 	}
-	
+
+	//Recoleccion y espera pasiva del proceso azul
+
 	public synchronized String recogerProductAzul()
 	{
 		String message = "";
+
+		//Espera si esta vacio
 		
 		while (this.buffer.size() == 0)
 		{
@@ -66,12 +77,16 @@ public class BufferLimitado {
 			}
 			
 		}
-		
+
+		//Verifica si es un producto azul (proceso 0)
+
 		if(buffer.get(0).contains("proceso 0"))
 		{
 			message = this.buffer.remove(0);
 		}
-		
+
+		//Notifica cuando termina
+
 		notifyAll();
 					
 		return message;
@@ -85,6 +100,8 @@ public class BufferLimitado {
 	
 	public synchronized boolean insertProductNaranja(String message, ProcesoNaranja procesoNaranja)
 	{
+		//Pregunta si esta lleno y espera de manera semiactiva si si
+
 		if (this.buffer.size() == this.size)
 		{
 			return false;
@@ -95,6 +112,8 @@ public class BufferLimitado {
 			this.buffer.add(message);
 			this.Nmessages--;
 		}
+
+		//notifica cuando termine
 		
 		notifyAll();
 		
@@ -105,6 +124,8 @@ public class BufferLimitado {
 	public synchronized String recogerProductNaranja(ProcesoNaranja procesoNaranja)
 	{
 		String message = "";
+
+		//Verifica si esta vacio
 		
 		if (this.buffer.size() == 0)
 		{
@@ -112,6 +133,8 @@ public class BufferLimitado {
 			return message;
 			
 		}
+
+		//Verifica si es un producto naranja (proceso 1)
 		
 		if(buffer.get(0).contains("proceso 1"))
 		{
@@ -124,7 +147,8 @@ public class BufferLimitado {
 		
 	}
 	
-	
+	//Verifica si ya proceso todos los producto
+
 	public synchronized boolean isFinishedBuffer() {
 		return this.Nmessages<=0;
 	}
@@ -133,13 +157,15 @@ public class BufferLimitado {
 		return buffer;
 	}
 	
-	//prueba
+	//Insercion productos en etapa final
 	
 	public  void insertEtapaFinal(String message)
 	{
 			this.buffer.add(message);
 			System.out.println(message + " Recibido Etapa Final");
 	}
+
+	//Recoleccion productos en etapa final ( Este metodo no es fundamental )
 	
 	public String recogerProductRojo()
 	{
@@ -160,16 +186,6 @@ public class BufferLimitado {
 	
 	public int getNmessages() {
 		return Nmessages;
-	}
-
-	public void imprimirbuffer()
-	{
-		System.out.println("empieza");
-		for(String message: buffer)
-		{
-			System.out.println(message);
-		}
-		System.out.println("acaba");
 	}
 	
 

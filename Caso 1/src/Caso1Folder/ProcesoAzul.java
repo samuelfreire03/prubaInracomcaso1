@@ -35,17 +35,22 @@ public class ProcesoAzul extends Thread{
 		
 	}
 	
-	//MandarProducto este metodo manda los productos al primer buffer desde la etapa a el buffer siguiente.
+	//MandarProducto este metodo manda los productos al buffer desde la etapa a el buffer siguiente.
 	
 	private void MandarProducto(int id,String message)
 	{
+		//Verificacion de etapa
+
 		if(etapa==1) 
 		{
+			//Creacion del producto e insercion en el buffer 1 o etapa 2
 
 			this.buf.insertProductAzul("El producto con el id" + id + ", sale del proceso 0; Progreso producto: 25% [#####---------------] Producto Creado");
 		}
 		else if(etapa==2)  
 		{
+			//Implementacion de transformacion
+
 			Random random = new Random();
         	int randomNumber = random.nextInt(451) + 50;
 
@@ -55,6 +60,8 @@ public class ProcesoAzul extends Thread{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+			//Insercion de producto en buffer2 o etapa 3
 
 			System.out.println(message + ", recibido etapa 2 por proceso 0 \n");
 			int indexfinal = message.indexOf(";");
@@ -62,6 +69,8 @@ public class ProcesoAzul extends Thread{
 		}
 		else 
 		{
+			//Implementacion de transformacion
+
 			Random random = new Random();
         	int randomNumber = random.nextInt(451) + 50;
 
@@ -71,6 +80,8 @@ public class ProcesoAzul extends Thread{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+			//Insercion de producto en buffer3 o etapa final
 
 			System.out.println(message + ", recibido etapa 3 por proceso 0 \n");
 			int indexfinal = message.indexOf(";");
@@ -85,6 +96,8 @@ public class ProcesoAzul extends Thread{
 		
 		if (etapa==1)
 		{
+			//Crea la cantidad de productos especificada
+
 			for(int i = 0; i < this.cantProductos;i++)
 			{
 				idProductos.MasNumero();
@@ -100,6 +113,8 @@ public class ProcesoAzul extends Thread{
 		{
 			while(mensajesprocesadoset2>0)
 			{	
+				//Recoge los productos y los manda a etapa 3
+
 				String message = this.buf.recogerProductAzul();
 				if (message != "")
 				{
@@ -114,7 +129,8 @@ public class ProcesoAzul extends Thread{
 		{
 			while(mensajesprocesadoset3>0)
 			{	
-				
+				//Recoge los productos y los manda a etapa final
+
 				String message = this.buf2.recogerProductAzul();
 				if (message != "")
 				{

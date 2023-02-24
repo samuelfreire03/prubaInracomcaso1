@@ -37,9 +37,13 @@ public class ProcesoNaranja extends Thread{
 	
 	private void MandarProducto(int id,String message)
 	{
+
+		//Verificacion de etapa
 		
 		if(etapa==1) 
 		{
+
+			//Creacion del producto e insercion en el buffer 1 o etapa 2
 			
 			while(!this.buf1.insertProductNaranja("El producto con el id" + id + ", sale del proceso 1; Progreso producto: 25% [#####---------------] Producto Creado ",this)) 
 			{
@@ -48,6 +52,8 @@ public class ProcesoNaranja extends Thread{
 		}
 		else if(etapa==2)  
 		{
+			//Implementacion de transformacion
+
 			Random random = new Random();
         	int randomNumber = random.nextInt(451) + 50;
 
@@ -57,6 +63,8 @@ public class ProcesoNaranja extends Thread{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+			//Insercion de producto en buffer2 o etapa 3
 			
 			System.out.println(message + ", recibido en etapa 2 por proceso 1 \n");
 			int indexfinal = message.indexOf(";");
@@ -67,6 +75,9 @@ public class ProcesoNaranja extends Thread{
 		}
 		else 
 		{
+
+			//Implementacion de transformacion
+
 			Random random = new Random();
         	int randomNumber = random.nextInt(451) + 50;
 
@@ -76,6 +87,8 @@ public class ProcesoNaranja extends Thread{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+			//Insercion de producto en buffer3 o etapa final
 
 			System.out.println(message + ", recibido en etapa 3 por proceso 1 \n");
 			int indexfinal = message.indexOf(";");
@@ -92,6 +105,8 @@ public class ProcesoNaranja extends Thread{
 		
 		if (etapa==1)
 		{
+			//Crea la cantidad de productos especificada
+
 			for(int i = 0; i < this.cantProductos;i++)
 			{
 				idProductos.MasNumero();
@@ -109,6 +124,8 @@ public class ProcesoNaranja extends Thread{
 	
 			while(mensajesprocesadoset2>0)
 			{	
+				//Recoge los productos y los manda a etapa 3
+
 				String message = this.buf1.recogerProductNaranja(this);
 				if (message != "")
 				{
@@ -128,6 +145,8 @@ public class ProcesoNaranja extends Thread{
 	
 			while(mensajesprocesadoset3>0)
 			{	
+				//Recoge los productos y los manda a etapa final
+
 				String message = this.buf2.recogerProductNaranja(this);
 				if (message != "")
 				{
